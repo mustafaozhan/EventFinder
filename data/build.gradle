@@ -37,6 +37,7 @@ dependencies {
             kotlin,
             dagger,
             moshi,
+            moshiConverter,
             timber,
             retrofit,
             room.roomKtx
