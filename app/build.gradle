@@ -35,7 +35,8 @@ dependencies {
     implementation(
             kotlin,
             dagger,
-            room.roomRuntime
+            room.roomRuntime,
+            glide
     )
 
     kapt(annotations.daggerCompiler)

@@ -37,12 +37,14 @@ dependencies {
             constraintLayout,
             dagger,
             timber,
-            navigation
+            navigation,
+            glide
     )
 
     kapt(
             annotations.daggerCompiler,
-            annotations.daggerProcessor
+            annotations.daggerProcessor,
+            annotations.glide
     )
 
     testImplementation(

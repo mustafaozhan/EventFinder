@@ -37,6 +37,7 @@ data class Event(
     @Json(name = "accessibility") val accessibility: Accessibility,
     @Json(name = "ticketLimit") val ticketLimit: TicketLimit? = null,
     @Json(name = "ageRestrictions") val ageRestrictions: AgeRestrictions,
+    var favorite: Boolean = false,
 
     @Transient val links: EventLinks? = null,
     @Transient val embedded: EventEmbedded? = null
@@ -73,7 +74,7 @@ data class Genre(
 
 @JsonClass(generateAdapter = true)
 data class Dates(
-    @Transient val start: Start? = null,
+    @Json(name = "start") val start: Start? = null,
     @Transient val timezone: String? = null,
     @Transient val status: Status? = null,
     @Transient val spanMultipleDays: Boolean? = null
@@ -81,7 +82,7 @@ data class Dates(
 
 @JsonClass(generateAdapter = true)
 data class Start(
-    @Transient val localDate: String? = null,
+    @Json(name = "localDate") val localDate: String? = null,
     @Transient val localTime: String? = null,
     @Transient val dateTime: String? = null,
     @Transient val dateTBD: Boolean? = null,
@@ -121,7 +122,7 @@ data class Attraction(
 @JsonClass(generateAdapter = true)
 data class Image(
     @Transient val ratio: Ratio? = null,
-    @Transient val url: String? = null,
+    @Json(name = "url") val url: String? = null,
     @Transient val width: Long? = null,
     @Transient val height: Long? = null,
     @Transient val fallback: Boolean? = null,

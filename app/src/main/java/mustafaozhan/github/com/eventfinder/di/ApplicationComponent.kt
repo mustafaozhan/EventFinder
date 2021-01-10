@@ -9,6 +9,7 @@ import mustafaozhan.github.com.ui.di.scope.ActivityScope
 import mustafaozhan.github.com.ui.di.scope.FragmentScope
 import mustafaozhan.github.com.ui.di.view.ActivityInjectionModule
 import mustafaozhan.github.com.ui.di.view.FragmentInjectionModule
+import mustafaozhan.github.com.ui.di.view.GlideModule
 import mustafaozhan.github.com.ui.di.viewmodel.ViewModelModule
 import javax.inject.Singleton
 
@@ -22,7 +23,8 @@ import javax.inject.Singleton
         ApplicationModule::class,
         ActivityInjectionModule::class,
         FragmentInjectionModule::class,
-        ViewModelModule::class
+        ViewModelModule::class,
+        GlideModule::class
     ]
 )
 interface ApplicationComponent {
