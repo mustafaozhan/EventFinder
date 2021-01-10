@@ -7,8 +7,9 @@ import mustafaozhan.github.com.data.model.Event
 import mustafaozhan.github.com.ui.base.BaseDBRecyclerViewAdapter
 import mustafaozhan.github.com.ui.databinding.ItemEventListBinding
 
-class EventListAdapter :
-    BaseDBRecyclerViewAdapter<Event, ItemEventListBinding>(CalculatorDiffer()) {
+class EventListAdapter(
+    private val eventListEvent: EventListEvent
+) : BaseDBRecyclerViewAdapter<Event, ItemEventListBinding>(CalculatorDiffer()) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -26,11 +27,12 @@ class EventListAdapter :
 
         override fun onItemBind(item: Event) = with(itemBinding) {
             this.item = item
+            this.event = eventListEvent
         }
     }
 
     class CalculatorDiffer : DiffUtil.ItemCallback<Event>() {
-        override fun areItemsTheSame(oldItem: Event, newItem: Event) = false
+        override fun areItemsTheSame(oldItem: Event, newItem: Event) = oldItem == newItem
 
         override fun areContentsTheSame(oldItem: Event, newItem: Event) = false
     }

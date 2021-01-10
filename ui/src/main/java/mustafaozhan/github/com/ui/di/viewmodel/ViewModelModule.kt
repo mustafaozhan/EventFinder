@@ -3,6 +3,7 @@ package mustafaozhan.github.com.ui.di.viewmodel
 import dagger.Module
 import dagger.Provides
 import mustafaozhan.github.com.data.api.ApiRepository
+import mustafaozhan.github.com.data.db.EventDao
 import mustafaozhan.github.com.ui.di.scope.ActivityScope
 import mustafaozhan.github.com.ui.eventlist.EventListViewModel
 
@@ -11,6 +12,11 @@ class ViewModelModule {
 
     @Provides
     @ActivityScope
-    internal fun providesEventListViewModel(apiRepository: ApiRepository) =
-        EventListViewModel(apiRepository)
+    internal fun providesEventListViewModel(
+        apiRepository: ApiRepository,
+        eventDao: EventDao
+    ) = EventListViewModel(
+        apiRepository,
+        eventDao
+    )
 }

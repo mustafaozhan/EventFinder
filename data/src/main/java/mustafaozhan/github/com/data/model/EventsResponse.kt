@@ -1,5 +1,8 @@
 package mustafaozhan.github.com.data.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -15,11 +18,20 @@ data class Embedded(
     @Json(name = "events") val events: List<Event>
 )
 
+@Entity(tableName = "event")
+data class EventEntity(
+    @ColumnInfo(name = "name") @Json(name = "name") var name: String,
+    @PrimaryKey @ColumnInfo(name = "id") var id: String,
+    @ColumnInfo(name = "isFavorite") var isFavorite: Boolean
+)
+
 @JsonClass(generateAdapter = true)
 data class Event(
-    @Json(name = "name") val name: String,
-    @Json(name = "type") val type: String,
     @Json(name = "id") val id: String,
+    @Json(name = "name") val name: String,
+    var isFavorite: Boolean = false,
+
+    @Json(name = "type") val type: String,
     @Json(name = "test") val test: Boolean,
     @Json(name = "url") val url: String,
     @Json(name = "locale") val locale: String,
@@ -37,11 +49,14 @@ data class Event(
     @Json(name = "accessibility") val accessibility: Accessibility,
     @Json(name = "ticketLimit") val ticketLimit: TicketLimit? = null,
     @Json(name = "ageRestrictions") val ageRestrictions: AgeRestrictions,
-    var favorite: Boolean = false,
 
     @Transient val links: EventLinks? = null,
     @Transient val embedded: EventEmbedded? = null
-)
+) {
+    companion object {
+        fun Event.toEntity() = EventEntity(name, id, isFavorite)
+    }
+}
 
 @JsonClass(generateAdapter = true)
 data class Accessibility(
@@ -121,28 +136,13 @@ data class Attraction(
 
 @JsonClass(generateAdapter = true)
 data class Image(
-    @Transient val ratio: Ratio? = null,
+    @Transient val ratio: String? = null,
     @Json(name = "url") val url: String? = null,
     @Transient val width: Long? = null,
     @Transient val height: Long? = null,
     @Transient val fallback: Boolean? = null,
     @Transient val attribution: String? = null
 )
-
-enum class Ratio(val value: String) {
-    The16_9("16_9"),
-    The3_2("3_2"),
-    The4_3("4_3");
-
-    companion object {
-        fun fromValue(value: String): Ratio = when (value) {
-            "16_9" -> The16_9
-            "3_2" -> The3_2
-            "4_3" -> The4_3
-            else -> throw IllegalArgumentException()
-        }
-    }
-}
 
 @JsonClass(generateAdapter = true)
 data class AttractionLinks(

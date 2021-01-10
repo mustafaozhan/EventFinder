@@ -9,6 +9,10 @@
             name="item"
             type="mustafaozhan.github.com.data.model.Event" />
 
+        <variable
+            name="event"
+            type="mustafaozhan.github.com.ui.eventlist.EventListEvent" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,6 +29,7 @@
             app:imageUrl="@{item.images.get(0).url}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription"
             tools:src="@drawable/ic_glide_error_placeholder" />
 
         <TextView
@@ -45,6 +50,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:padding="4dp"
+            android:textColor="@color/color_text"
             android:text="@{item.dates.start.localDate}"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="parent"
@@ -55,11 +61,13 @@
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="36dp"
+            android:background="@{item.isFavorite ? @drawable/ic_hearth_filled : @drawable/ic_heart_empty}"
             android:layout_height="36dp"
-            android:background="@{item.favorite ? @drawable/ic_hearth_filled : @drawable/ic_heart_empty}"
+            android:onClick="@{() -> event.favoriteClicked(item)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:background="@drawable/ic_heart_empty" />
+            tools:background="@drawable/ic_heart_empty"
+            tools:ignore="ContentDescription" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
