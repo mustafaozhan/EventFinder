@@ -1,8 +1,9 @@
 /*
  Copyright (c) 2020 Mustafa Ozhan. All rights reserved.
  */
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
 apply plugin: 'kotlin-kapt'
 
 apply from: '../dependencies.gradle'
@@ -12,8 +13,6 @@ android {
     compileSdkVersion config.compileSdkVersion
 
     defaultConfig {
-        multiDexEnabled true
-        applicationId config.applicationId
         minSdkVersion config.minSdkVersion
         targetSdkVersion config.targetSdkVersion
         versionCode config.versionCode
@@ -34,12 +33,24 @@ android {
 dependencies {
     implementation(
             kotlin,
+            androidMaterial,
+            constraintLayout,
             dagger,
-            room.roomRuntime
+            timber,
+            navigation
     )
 
-    kapt(annotations.daggerCompiler)
+    kapt(
+            annotations.daggerCompiler,
+            annotations.daggerProcessor
+    )
 
-    implementation project(':ui')
+    testImplementation(
+            jUnit,
+            mockK,
+            archTesting,
+            coroutinesTest
+    )
+
     implementation project(':data')
 }

@@ -5,11 +5,11 @@ import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.support.AndroidSupportInjectionModule
 import mustafaozhan.github.com.eventfinder.EventFinderApp
-import mustafaozhan.github.com.eventfinder.di.scope.ActivityScope
-import mustafaozhan.github.com.eventfinder.di.scope.FragmentScope
-import mustafaozhan.github.com.eventfinder.di.view.ActivityInjectionModule
-import mustafaozhan.github.com.eventfinder.di.view.FragmentInjectionModule
-import mustafaozhan.github.com.eventfinder.di.viewmodel.ViewModelModule
+import mustafaozhan.github.com.ui.di.scope.ActivityScope
+import mustafaozhan.github.com.ui.di.scope.FragmentScope
+import mustafaozhan.github.com.ui.di.view.ActivityInjectionModule
+import mustafaozhan.github.com.ui.di.view.FragmentInjectionModule
+import mustafaozhan.github.com.ui.di.viewmodel.ViewModelModule
 import javax.inject.Singleton
 
 @Singleton
