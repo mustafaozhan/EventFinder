@@ -7,6 +7,9 @@ import dagger.android.support.AndroidSupportInjectionModule
 import mustafaozhan.github.com.eventfinder.EventFinderApp
 import mustafaozhan.github.com.eventfinder.di.scope.ActivityScope
 import mustafaozhan.github.com.eventfinder.di.scope.FragmentScope
+import mustafaozhan.github.com.eventfinder.di.view.ActivityInjectionModule
+import mustafaozhan.github.com.eventfinder.di.view.FragmentInjectionModule
+import mustafaozhan.github.com.eventfinder.di.viewmodel.ViewModelModule
 import javax.inject.Singleton
 
 @Singleton
@@ -18,7 +21,8 @@ import javax.inject.Singleton
         AndroidSupportInjectionModule::class,
         ApplicationModule::class,
         ActivityInjectionModule::class,
-        FragmentInjectionModule::class
+        FragmentInjectionModule::class,
+        ViewModelModule::class
     ]
 )
 interface ApplicationComponent {

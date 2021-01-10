@@ -1,4 +1,4 @@
-package mustafaozhan.github.com.eventfinder.di
+package mustafaozhan.github.com.eventfinder.di.view
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
