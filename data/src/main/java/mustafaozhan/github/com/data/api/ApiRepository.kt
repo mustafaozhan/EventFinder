@@ -54,7 +54,7 @@ class ApiRepository
             }
         }
 
-    suspend fun getEvents(pageNumber: Int) = apiRequest {
+    suspend fun getEvents(pageNumber: Long) = apiRequest {
         apiFactory.apiService.getEvents(
             pageNumber.toString(),
             PAGE_SIZE.toString(),

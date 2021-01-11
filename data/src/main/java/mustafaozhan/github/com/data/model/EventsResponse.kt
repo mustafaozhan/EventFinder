@@ -349,8 +349,8 @@ data class Links(
 
 @JsonClass(generateAdapter = true)
 data class Page(
-    @Json(name = "size") val size: Int,
-    @Json(name = "totalElements") val totalElements: Int,
-    @Json(name = "totalPages") val totalPages: Int,
-    @Json(name = "number") val number: Int
+    @Json(name = "size") val size: Long,
+    @Json(name = "totalElements") val totalElements: Long,
+    @Json(name = "totalPages") val totalPages: Long,
+    @Json(name = "number") val number: Long
 )

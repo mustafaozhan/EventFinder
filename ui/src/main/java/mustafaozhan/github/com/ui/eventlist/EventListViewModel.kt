@@ -32,7 +32,7 @@ class EventListViewModel(
         }
     }
 
-    private suspend fun getEventsFromApi(pageNumber: Int = 0) {
+    private suspend fun getEventsFromApi(pageNumber: Long = 0) {
         _state.value = _state.value?.copy(isLoading = true)
 
         apiRepository.getEvents(pageNumber)
