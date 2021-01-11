@@ -5,5 +5,13 @@ data class EventDetailState(
     val info: String = "",
     val imgUrl: String = "",
     val type: String = "",
-    val date: String = ""
+    val date: String = "",
 )
+
+sealed class EventDetailEffect {
+    object BackEffect : EventDetailEffect()
+}
+
+interface EventDetailEvent {
+    fun onBackPressed()
+}

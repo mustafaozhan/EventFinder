@@ -4,11 +4,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import mustafaozhan.github.com.data.model.Event
+import mustafaozhan.github.com.util.MutableSingleLiveData
+import mustafaozhan.github.com.util.SingleLiveData
 
-class EventDetailViewModel : ViewModel() {
+class EventDetailViewModel : ViewModel(), EventDetailEvent {
 
+    // region SEED
     private var _state = MutableLiveData(EventDetailState())
     var state: LiveData<EventDetailState> = _state
+
+    fun getEvent() = this as EventDetailEvent
+
+    private var _effect = MutableSingleLiveData<EventDetailEffect>()
+    var effect: SingleLiveData<EventDetailEffect> = _effect
+    // endregion
 
     fun setEvent(event: Event) = with(event) {
         _state.value = _state.value?.copy(
@@ -19,4 +28,10 @@ class EventDetailViewModel : ViewModel() {
             date = dates?.start?.localDate ?: ""
         )
     }
+
+    // region events
+    override fun onBackPressed() {
+        _effect.postValue(EventDetailEffect.BackEffect)
+    }
+    // endregion
 }

@@ -33,4 +33,12 @@
     <style name="ActionButtonOverflow" parent="@style/Widget.AppCompat.ActionButton.Overflow">
         <item name="android:tint">@color/color_text</item>
     </style>
+
+    <style name="BaseToolbarStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:animateLayoutChanges">true</item>
+        <item name="android:background">@color/color_background_strong</item>
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
 </resources>

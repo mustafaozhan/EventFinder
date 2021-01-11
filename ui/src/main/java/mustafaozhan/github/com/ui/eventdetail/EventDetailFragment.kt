@@ -6,11 +6,12 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import mustafaozhan.github.com.ui.base.fragment.BaseDBFragment
 import mustafaozhan.github.com.ui.databinding.FragmentEventDetailBinding
+import mustafaozhan.github.com.util.reObserve
 import javax.inject.Inject
 
 class EventDetailFragment : BaseDBFragment<FragmentEventDetailBinding>() {
 
-    val args: EventDetailFragmentArgs by navArgs()
+    private val args: EventDetailFragmentArgs by navArgs()
 
     @Inject
     lateinit var eventDetailViewModel: EventDetailViewModel
@@ -20,10 +21,20 @@ class EventDetailFragment : BaseDBFragment<FragmentEventDetailBinding>() {
 
     override fun onBinding(dataBinding: FragmentEventDetailBinding) {
         binding.vm = eventDetailViewModel
+        binding.event = eventDetailViewModel.getEvent()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         eventDetailViewModel.setEvent(args.event)
+        observeEffects()
+    }
+
+    private fun observeEffects() {
+        eventDetailViewModel.effect.reObserve(viewLifecycleOwner, { eventDetailEffect ->
+            when (eventDetailEffect) {
+                is EventDetailEffect.BackEffect -> requireActivity().onBackPressed()
+            }
+        })
     }
 }

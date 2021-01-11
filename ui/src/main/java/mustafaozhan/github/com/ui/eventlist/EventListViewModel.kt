@@ -20,6 +20,7 @@ class EventListViewModel(
     private val eventDao: EventDao
 ) : ViewModel(), EventListEvent {
 
+    // region SEED
     private var _state = MutableLiveData(EventListState())
     var state: LiveData<EventListState> = _state
 
@@ -29,6 +30,7 @@ class EventListViewModel(
     fun getEvent() = this as EventListEvent
 
     var data = EventListData()
+    // endregion
 
     init {
         viewModelScope.launch {
@@ -98,6 +100,7 @@ class EventListViewModel(
             true
         }
 
+    // region events
     override fun favoriteClicked(item: Event) {
         viewModelScope.launch {
             item.toEntity().let {
@@ -116,4 +119,5 @@ class EventListViewModel(
     override fun openEventDetail(item: Event) {
         _effect.postValue(EventListEffect.OpenEventDetail(item))
     }
+    // endregion
 }
