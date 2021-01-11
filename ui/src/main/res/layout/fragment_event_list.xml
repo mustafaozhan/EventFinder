@@ -8,6 +8,10 @@
             name="vm"
             type="mustafaozhan.github.com.ui.eventlist.EventListViewModel" />
 
+        <variable
+            name="event"
+            type="mustafaozhan.github.com.ui.eventlist.EventListEvent" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,6 +24,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:event="@{event}"
             app:vm="@{vm}" />
 
         <ProgressBar

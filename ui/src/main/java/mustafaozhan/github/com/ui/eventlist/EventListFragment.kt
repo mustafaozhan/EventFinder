@@ -22,7 +22,10 @@ class EventListFragment : BaseDBFragment<FragmentEventListBinding>() {
 
     override fun onBinding(dataBinding: FragmentEventListBinding) {
         binding.vm = eventListViewModel
-        eventListAdapter = EventListAdapter(eventListViewModel.getEvent())
+        eventListViewModel.getEvent().let {
+            binding.event = it
+            eventListAdapter = EventListAdapter(it)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,6 +42,10 @@ class EventListFragment : BaseDBFragment<FragmentEventListBinding>() {
                     EventListFragmentDirections.actionEventListFragmentToEventDetailFragment(
                         eventListEffect.event
                     )
+                )
+                is EventListEffect.OpenFavoriteEvents -> navigate(
+                    R.id.eventListFragment,
+                    EventListFragmentDirections.actionEventListFragmentToFavoriteEventsFragment()
                 )
             }
         })
@@ -61,10 +68,4 @@ class EventListFragment : BaseDBFragment<FragmentEventListBinding>() {
             })
         }
     }
-
-    override fun onResume() {
-        super.onResume()
-        eventListViewModel.filterList("")
-    }
-
 }

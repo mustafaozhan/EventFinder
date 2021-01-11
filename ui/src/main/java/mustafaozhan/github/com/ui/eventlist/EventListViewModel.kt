@@ -9,8 +9,8 @@ import kotlinx.coroutines.launch
 import mustafaozhan.github.com.api.ApiRepository
 import mustafaozhan.github.com.db.EventDao
 import mustafaozhan.github.com.model.Event
-import mustafaozhan.github.com.model.Event.Companion.toEntity
 import mustafaozhan.github.com.model.EventsResponse
+import mustafaozhan.github.com.model.toEntity
 import mustafaozhan.github.com.util.MutableSingleLiveData
 import mustafaozhan.github.com.util.SingleLiveData
 import timber.log.Timber
@@ -95,10 +95,7 @@ class EventListViewModel(
                     it.classifications?.get(0)?.genre?.name?.contains(txt, true) == true
         }?.toMutableList()
         ?.let {
-            _state.value = _state.value?.copy(
-                eventList = it,
-                isLoading = false
-            )
+            _state.value = _state.value?.copy(eventList = it)
         }.run {
             data.query = txt
             true
@@ -122,6 +119,10 @@ class EventListViewModel(
 
     override fun openEventDetail(item: Event) {
         _effect.postValue(EventListEffect.OpenEventDetail(item))
+    }
+
+    override fun openFavoriteEvents() {
+        _effect.postValue(EventListEffect.OpenFavoriteEvents)
     }
     // endregion
 }

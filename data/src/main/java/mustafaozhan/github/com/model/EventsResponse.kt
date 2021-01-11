@@ -31,6 +31,17 @@ data class EventEntity(
     @ColumnInfo(name = "genre") val genre: String,
 )
 
+fun EventEntity.toModel() = Event(
+    name = name,
+    id = id,
+    isFavorite = isFavorite,
+    info = info,
+    imgUrl = imgUrl,
+    type = type,
+    date = date,
+    genre = genre
+)
+
 @JsonClass(generateAdapter = true)
 data class Event(
     @Json(name = "id") val id: String,
@@ -55,23 +66,24 @@ data class Event(
     @Json(name = "accessibility") val accessibility: Accessibility? = null,
     @Json(name = "ticketLimit") val ticketLimit: TicketLimit? = null,
     @Json(name = "ageRestrictions") val ageRestrictions: AgeRestrictions? = null,
+    @Transient val imgUrl: String = images?.get(0)?.url ?: "",
+    @Transient val date: String = dates?.start?.localDate ?: "",
+    @Transient val genre: String = classifications?.get(0)?.genre?.name ?: "",
 
     @Transient val links: EventLinks? = null,
     @Transient val embedded: EventEmbedded? = null
-) : Serializable {
-    companion object {
-        fun Event.toEntity() = EventEntity(
-            name,
-            id,
-            isFavorite,
-            info ?: "",
-            images?.get(0)?.url ?: "",
-            type ?: "",
-            dates?.start?.localDate ?: "",
-            classifications?.get(0)?.genre?.name ?: ""
-        )
-    }
-}
+) : Serializable
+
+fun Event.toEntity() = EventEntity(
+    name,
+    id,
+    isFavorite,
+    info ?: "",
+    imgUrl,
+    type ?: "",
+    date,
+    genre
+)
 
 @JsonClass(generateAdapter = true)
 data class Accessibility(

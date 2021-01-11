@@ -36,6 +36,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/details"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
         </androidx.appcompat.widget.Toolbar>
 
         <TextView
@@ -68,7 +74,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="4dp"
-            android:text="@{`Type: ` + vm.state.type + `\nDate: ` + vm.state.date + `\nGenre` + vm.state.genre }"
+            android:text="@{`Type: ` + vm.state.type + `\nDate: ` + vm.state.date + `\nGenre: ` + vm.state.genre }"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

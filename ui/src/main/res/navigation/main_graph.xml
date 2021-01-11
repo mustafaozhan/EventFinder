@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_eventListFragment_to_eventDetailFragment"
             app:destination="@id/eventDetailFragment" />
+        <action
+            android:id="@+id/action_eventListFragment_to_favoriteEventsFragment"
+            app:destination="@id/favoriteEventsFragment" />
     </fragment>
 
     <fragment
@@ -26,5 +29,15 @@
         <argument
             android:name="event"
             app:argType="mustafaozhan.github.com.model.Event" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/favoriteEventsFragment"
+        android:name="mustafaozhan.github.com.ui.favoriteevents.FavoriteEventsFragment"
+        android:label="FavoriteEvetsFragment"
+        tools:layout="@layout/fragment_favorite_events">
+        <action
+            android:id="@+id/action_favoriteEventsFragment_to_eventDetailFragment"
+            app:destination="@id/eventDetailFragment" />
     </fragment>
 </navigation>

@@ -1,5 +1,6 @@
 package mustafaozhan.github.com.ui.eventdetail
 
+// State
 data class EventDetailState(
     val name: String = "",
     val info: String = "",
@@ -9,10 +10,12 @@ data class EventDetailState(
     val genre: String = ""
 )
 
+// Effect
 sealed class EventDetailEffect {
     object BackEffect : EventDetailEffect()
 }
 
+// Event
 interface EventDetailEvent {
     fun onBackPressed()
 }

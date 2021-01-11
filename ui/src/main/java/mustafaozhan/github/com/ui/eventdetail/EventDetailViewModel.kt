@@ -23,10 +23,10 @@ class EventDetailViewModel : ViewModel(), EventDetailEvent {
         _state.value = _state.value?.copy(
             name = name,
             info = info ?: "",
-            imgUrl = images?.get(0)?.url ?: "",
+            imgUrl = imgUrl,
             type = type ?: "",
-            date = dates?.start?.localDate ?: "",
-            genre = classifications?.get(0)?.genre?.name ?: ""
+            date = date,
+            genre = genre
         )
     }
 
