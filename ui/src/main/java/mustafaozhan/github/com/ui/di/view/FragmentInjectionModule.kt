@@ -2,6 +2,7 @@ package mustafaozhan.github.com.ui.di.view
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import mustafaozhan.github.com.ui.eventdetail.EventDetailFragment
 import mustafaozhan.github.com.ui.eventlist.EventListFragment
 
 @Suppress("unused")
@@ -10,5 +11,8 @@ abstract class FragmentInjectionModule {
 
     @ContributesAndroidInjector
     abstract fun contributesEventListFragment(): EventListFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributesEventDetailFragment(): EventDetailFragment
 
 }

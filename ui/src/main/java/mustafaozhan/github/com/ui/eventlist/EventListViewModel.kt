@@ -11,6 +11,8 @@ import mustafaozhan.github.com.data.db.EventDao
 import mustafaozhan.github.com.data.model.Event
 import mustafaozhan.github.com.data.model.Event.Companion.toEntity
 import mustafaozhan.github.com.data.model.EventsResponse
+import mustafaozhan.github.com.util.MutableSingleLiveData
+import mustafaozhan.github.com.util.SingleLiveData
 import timber.log.Timber
 
 class EventListViewModel(
@@ -20,6 +22,9 @@ class EventListViewModel(
 
     private var _state = MutableLiveData(EventListState())
     var state: LiveData<EventListState> = _state
+
+    private var _effect = MutableSingleLiveData<EventListEffect>()
+    var effect: SingleLiveData<EventListEffect> = _effect
 
     fun getEvent() = this as EventListEvent
 
@@ -106,5 +111,9 @@ class EventListViewModel(
             if (data.page?.number ?: 0 < data.page?.totalPages ?: 0)
                 getEventsFromApi((data.page?.number ?: 0) + 1)
         }
+    }
+
+    override fun openEventDetail(item: Event) {
+        _effect.postValue(EventListEffect.OpenEventDetail(item))
     }
 }

@@ -11,5 +11,20 @@
         android:id="@+id/eventListFragment"
         android:name="mustafaozhan.github.com.ui.eventlist.EventListFragment"
         android:label="EventListFragment"
-        tools:layout="@layout/fragment_event_list" />
+        tools:layout="@layout/fragment_event_list">
+        <action
+            android:id="@+id/action_eventListFragment_to_eventDetailFragment"
+            app:destination="@id/eventDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/eventDetailFragment"
+        android:name="mustafaozhan.github.com.ui.eventdetail.EventDetailFragment"
+        android:label="EventDetailFragment"
+        tools:layout="@layout/fragment_event_detail">
+
+        <argument
+            android:name="event"
+            app:argType="mustafaozhan.github.com.data.model.Event" />
+    </fragment>
 </navigation>

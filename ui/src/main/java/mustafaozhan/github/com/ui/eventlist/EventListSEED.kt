@@ -4,14 +4,19 @@ import mustafaozhan.github.com.data.model.Event
 import mustafaozhan.github.com.data.model.Page
 
 data class EventListState(
-    var eventList: MutableList<Event> = mutableListOf(),
-    var isLoading: Boolean = true,
-    var pageNumber: Int = 0,
+    val eventList: MutableList<Event> = mutableListOf(),
+    val isLoading: Boolean = true,
+    val pageNumber: Int = 0,
 )
+
+sealed class EventListEffect {
+    data class OpenEventDetail(val event: Event) : EventListEffect()
+}
 
 interface EventListEvent {
     fun favoriteClicked(item: Event)
     fun endOfPageEvent()
+    fun openEventDetail(item: Event)
 }
 
 data class EventListData(

@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 data class EventsResponse(
@@ -22,7 +23,12 @@ data class Embedded(
 data class EventEntity(
     @ColumnInfo(name = "name") @Json(name = "name") var name: String,
     @PrimaryKey @ColumnInfo(name = "id") var id: String,
-    @ColumnInfo(name = "isFavorite") var isFavorite: Boolean
+    @ColumnInfo(name = "isFavorite") var isFavorite: Boolean,
+    @ColumnInfo(name = "info") val info: String,
+    @ColumnInfo(name = "imgUrl") val imgUrl: String,
+    @ColumnInfo(name = "type") val type: String,
+    @ColumnInfo(name = "date") val date: String
+
 )
 
 @JsonClass(generateAdapter = true)
@@ -52,9 +58,17 @@ data class Event(
 
     @Transient val links: EventLinks? = null,
     @Transient val embedded: EventEmbedded? = null
-) {
+) : Serializable {
     companion object {
-        fun Event.toEntity() = EventEntity(name, id, isFavorite)
+        fun Event.toEntity() = EventEntity(
+            name,
+            id,
+            isFavorite,
+            info ?: "",
+            images?.get(0)?.url ?: "",
+            type ?: "",
+            dates?.start?.localDate ?: ""
+        )
     }
 }
 
