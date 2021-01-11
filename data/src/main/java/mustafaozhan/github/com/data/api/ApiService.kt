@@ -9,5 +9,9 @@ import retrofit2.http.Query
 
 interface ApiService {
     @GET("discovery/v2/events.json")
-    suspend fun getEvents(@Query("apikey") key: String): EventsResponse
+    suspend fun getEvents(
+        @Query("number") pageNumber: String,
+        @Query("size") size: String,
+        @Query("apikey") key: String
+    ): EventsResponse
 }

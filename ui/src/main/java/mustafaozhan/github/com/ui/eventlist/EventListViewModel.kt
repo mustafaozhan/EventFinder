@@ -10,6 +10,7 @@ import mustafaozhan.github.com.data.api.ApiRepository
 import mustafaozhan.github.com.data.db.EventDao
 import mustafaozhan.github.com.data.model.Event
 import mustafaozhan.github.com.data.model.Event.Companion.toEntity
+import mustafaozhan.github.com.data.model.EventsResponse
 import timber.log.Timber
 
 class EventListViewModel(
@@ -31,16 +32,35 @@ class EventListViewModel(
         }
     }
 
-    private suspend fun getEventsFromApi() = apiRepository.getEvents().execute({
-        _state.value = _state.value?.copy(
-            eventList = it.embedded.events,
-            isLoading = false
-        )
-        data.unFilteredList = it.embedded.events.toMutableList()
-    }, {
-        _state.value = _state.value?.copy(isLoading = false)
-        Timber.e(it)
-    })
+    private suspend fun getEventsFromApi(pageNumber: Int = 0) {
+        _state.value = _state.value?.copy(isLoading = true)
+
+        apiRepository.getEvents(pageNumber)
+            .execute(::eventsDownloadSuccess, ::eventsDownloadFailed) {
+                _state.value = _state.value?.copy(isLoading = false)
+            }
+    }
+
+    private fun eventsDownloadSuccess(eventsResponse: EventsResponse) {
+        _state.value?.eventList?.let {
+            _state.value = _state.value?.copy(
+                eventList = it.toMutableList().apply {
+                    addAll(eventsResponse.embedded.events)
+                }
+            )
+        } ?: run {
+            _state.value = _state.value?.copy(
+                eventList = eventsResponse.embedded.events.toMutableList()
+            )
+        }
+
+        data.unFilteredList = eventsResponse.embedded.events.toMutableList()
+        data.page = eventsResponse.page
+    }
+
+    private fun eventsDownloadFailed(throwable: Throwable) {
+        Timber.e(throwable)
+    }
 
     private suspend fun getFavoriteEvents() = eventDao.collectFavoriteEvents()
         .collect { databaseEvents ->
@@ -78,6 +98,13 @@ class EventListViewModel(
             item.toEntity().let {
                 eventDao.insertEvent(it.copy(isFavorite = !it.isFavorite))
             }
+        }
+    }
+
+    override fun endOfPageEvent() {
+        viewModelScope.launch {
+            if (data.page?.number ?: 0 < data.page?.totalPages ?: 0)
+                getEventsFromApi((data.page?.number ?: 0) + 1)
         }
     }
 }

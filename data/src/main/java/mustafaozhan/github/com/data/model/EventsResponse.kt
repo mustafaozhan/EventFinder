@@ -31,24 +31,24 @@ data class Event(
     @Json(name = "name") val name: String,
     var isFavorite: Boolean = false,
 
-    @Json(name = "type") val type: String,
-    @Json(name = "test") val test: Boolean,
-    @Json(name = "url") val url: String,
-    @Json(name = "locale") val locale: String,
-    @Json(name = "images") val images: List<Image>,
-    @Json(name = "sales") val sales: Sales,
-    @Json(name = "dates") val dates: Dates,
-    @Json(name = "classifications") val classifications: List<Classification>,
-    @Json(name = "promoter") val promoter: Promoter,
-    @Json(name = "promoters") val promoters: List<Promoter>,
-    @Json(name = "info") val info: String,
+    @Json(name = "type") val type: String? = null,
+    @Json(name = "test") val test: Boolean? = null,
+    @Json(name = "url") val url: String? = null,
+    @Json(name = "locale") val locale: String? = null,
+    @Json(name = "images") val images: List<Image>? = null,
+    @Json(name = "sales") val sales: Sales? = null,
+    @Json(name = "dates") val dates: Dates? = null,
+    @Json(name = "classifications") val classifications: List<Classification>? = null,
+    @Json(name = "promoter") val promoter: Promoter? = null,
+    @Json(name = "promoters") val promoters: List<Promoter>? = null,
+    @Json(name = "info") val info: String? = null,
     @Json(name = "pleaseNote") val pleaseNote: String? = null,
-    @Json(name = "priceRanges") val priceRanges: List<PriceRange>,
+    @Json(name = "priceRanges") val priceRanges: List<PriceRange>? = null,
     @Json(name = "products") val products: List<Product>? = null,
-    @Json(name = "seatmap") val seatmap: Seatmap,
-    @Json(name = "accessibility") val accessibility: Accessibility,
+    @Json(name = "seatmap") val seatmap: Seatmap? = null,
+    @Json(name = "accessibility") val accessibility: Accessibility? = null,
     @Json(name = "ticketLimit") val ticketLimit: TicketLimit? = null,
-    @Json(name = "ageRestrictions") val ageRestrictions: AgeRestrictions,
+    @Json(name = "ageRestrictions") val ageRestrictions: AgeRestrictions? = null,
 
     @Transient val links: EventLinks? = null,
     @Transient val embedded: EventEmbedded? = null
@@ -341,16 +341,16 @@ data class TicketLimit(
 
 @JsonClass(generateAdapter = true)
 data class Links(
-    @Transient val first: First? = null,
-    @Transient val self: First? = null,
-    @Transient val next: First? = null,
-    @Transient val last: First? = null
+    @Json(name = "first") val first: First? = null,
+    @Json(name = "self") val self: First? = null,
+    @Json(name = "next") val next: First? = null,
+    @Json(name = "last") val last: First? = null
 )
 
 @JsonClass(generateAdapter = true)
 data class Page(
-    @Json(name = "size") val size: Long,
-    @Json(name = "totalElements") val totalElements: Long,
-    @Json(name = "totalPages") val totalPages: Long,
-    @Json(name = "number") val number: Long
+    @Json(name = "size") val size: Int,
+    @Json(name = "totalElements") val totalElements: Int,
+    @Json(name = "totalPages") val totalPages: Int,
+    @Json(name = "number") val number: Int
 )

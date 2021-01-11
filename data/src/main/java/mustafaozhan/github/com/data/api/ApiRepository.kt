@@ -24,6 +24,10 @@ class ApiRepository
     private val apiFactory: ApiFactory
 ) {
 
+    companion object {
+        private const val PAGE_SIZE = 20
+    }
+
     @Suppress("ThrowsCount", "TooGenericExceptionCaught")
     private suspend fun <T> apiRequest(suspendBlock: suspend () -> T) =
         withContext(Dispatchers.IO) {
@@ -50,7 +54,11 @@ class ApiRepository
             }
         }
 
-    suspend fun getEvents() = apiRequest {
-        apiFactory.apiService.getEvents(apiFactory.apiKey)
+    suspend fun getEvents(pageNumber: Int) = apiRequest {
+        apiFactory.apiService.getEvents(
+            pageNumber.toString(),
+            PAGE_SIZE.toString(),
+            apiFactory.apiKey
+        )
     }
 }
