@@ -9,8 +9,8 @@ import androidx.databinding.BindingAdapter
 import androidx.databinding.adapters.SearchViewBindingAdapter
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import mustafaozhan.github.com.di.view.GlideApp
 import mustafaozhan.github.com.ui.R
-import mustafaozhan.github.com.ui.di.view.GlideApp
 
 @BindingAdapter("visibility")
 fun View.visibility(visible: Boolean) {

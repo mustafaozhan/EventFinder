@@ -5,7 +5,7 @@ import androidx.lifecycle.coroutineScope
 import androidx.navigation.findNavController
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import mustafaozhan.github.com.ui.base.BaseActivity
+import mustafaozhan.github.com.base.BaseActivity
 import mustafaozhan.github.com.util.showSnack
 
 class MainActivity : BaseActivity() {

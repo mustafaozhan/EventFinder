@@ -3,7 +3,7 @@ package mustafaozhan.github.com.ui.eventdetail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import mustafaozhan.github.com.data.model.Event
+import mustafaozhan.github.com.model.Event
 import mustafaozhan.github.com.util.MutableSingleLiveData
 import mustafaozhan.github.com.util.SingleLiveData
 

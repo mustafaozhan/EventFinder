@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="mustafaozhan.github.com.data.model.Event" />
+            type="mustafaozhan.github.com.model.Event" />
 
         <variable
             name="event"

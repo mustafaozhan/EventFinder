@@ -6,11 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import mustafaozhan.github.com.data.api.ApiRepository
-import mustafaozhan.github.com.data.db.EventDao
-import mustafaozhan.github.com.data.model.Event
-import mustafaozhan.github.com.data.model.Event.Companion.toEntity
-import mustafaozhan.github.com.data.model.EventsResponse
+import mustafaozhan.github.com.api.ApiRepository
+import mustafaozhan.github.com.db.EventDao
+import mustafaozhan.github.com.model.Event
+import mustafaozhan.github.com.model.Event.Companion.toEntity
+import mustafaozhan.github.com.model.EventsResponse
 import mustafaozhan.github.com.util.MutableSingleLiveData
 import mustafaozhan.github.com.util.SingleLiveData
 import timber.log.Timber

@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
-import mustafaozhan.github.com.ui.base.fragment.BaseDBFragment
+import mustafaozhan.github.com.base.fragment.BaseDBFragment
 import mustafaozhan.github.com.ui.databinding.FragmentEventDetailBinding
 import mustafaozhan.github.com.util.reObserve
 import javax.inject.Inject

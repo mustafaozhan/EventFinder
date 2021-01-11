@@ -1,7 +1,7 @@
 package mustafaozhan.github.com.ui.eventlist
 
-import mustafaozhan.github.com.data.model.Event
-import mustafaozhan.github.com.data.model.Page
+import mustafaozhan.github.com.model.Event
+import mustafaozhan.github.com.model.Page
 
 data class EventListState(
     val eventList: MutableList<Event> = mutableListOf(),

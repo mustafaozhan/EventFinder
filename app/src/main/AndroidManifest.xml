@@ -14,9 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="mustafaozhan.github.com.ui.MainActivity"
+            android:name="mustafaozhan.github.com.ui.splash.SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppTheme.Fullscreen.SplashTheme"
             tools:ignore="AllowBackup">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -25,6 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="mustafaozhan.github.com.ui.MainActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

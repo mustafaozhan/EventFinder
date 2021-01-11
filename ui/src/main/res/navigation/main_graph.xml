@@ -25,6 +25,6 @@
 
         <argument
             android:name="event"
-            app:argType="mustafaozhan.github.com.data.model.Event" />
+            app:argType="mustafaozhan.github.com.model.Event" />
     </fragment>
 </navigation>

@@ -3,8 +3,8 @@ package mustafaozhan.github.com.ui.eventlist
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import mustafaozhan.github.com.data.model.Event
-import mustafaozhan.github.com.ui.base.BaseDBRecyclerViewAdapter
+import mustafaozhan.github.com.base.BaseDBRecyclerViewAdapter
+import mustafaozhan.github.com.model.Event
 import mustafaozhan.github.com.ui.databinding.ItemEventListBinding
 
 class EventListAdapter(
