@@ -6,6 +6,7 @@ data class EventDetailState(
     val imgUrl: String = "",
     val type: String = "",
     val date: String = "",
+    val genre: String = ""
 )
 
 sealed class EventDetailEffect {

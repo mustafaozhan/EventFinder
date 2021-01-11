@@ -71,6 +71,9 @@ class EventListViewModel(
 
     private suspend fun getFavoriteEvents() = eventDao.collectFavoriteEvents()
         .collect { databaseEvents ->
+            _state.value = _state.value?.copy(
+                favoriteItemCount = databaseEvents.filter { it.isFavorite }.count()
+            )
             state.value?.eventList?.let {
                 val tempList = it.toMutableList()
 
@@ -88,7 +91,8 @@ class EventListViewModel(
 
     fun filterList(txt: String) = data.unFilteredList
         ?.filter {
-            it.name.contains(txt, true)
+            it.name.contains(txt, true) ||
+                    it.classifications?.get(0)?.genre?.name?.contains(txt, true) == true
         }?.toMutableList()
         ?.let {
             _state.value = _state.value?.copy(

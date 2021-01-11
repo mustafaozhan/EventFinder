@@ -25,7 +25,8 @@ class EventDetailViewModel : ViewModel(), EventDetailEvent {
             info = info ?: "",
             imgUrl = images?.get(0)?.url ?: "",
             type = type ?: "",
-            date = dates?.start?.localDate ?: ""
+            date = dates?.start?.localDate ?: "",
+            genre = classifications?.get(0)?.genre?.name ?: ""
         )
     }
 

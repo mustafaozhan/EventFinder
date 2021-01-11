@@ -7,6 +7,7 @@ data class EventListState(
     val eventList: MutableList<Event> = mutableListOf(),
     val isLoading: Boolean = true,
     val pageNumber: Int = 0,
+    val favoriteItemCount: Int = 0
 )
 
 sealed class EventListEffect {

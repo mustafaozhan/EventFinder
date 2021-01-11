@@ -4,7 +4,7 @@
 <resources>
     <color name="color_primary">#00bcd4</color>
     <color name="color_primary_dark">#ffffff</color>
-    <color name="color_accent">#009688</color>
+    <color name="color_accent">#f0c48a</color>
 
     <color name="color_text_weak">#757575</color>
     <color name="color_text">#212121</color>

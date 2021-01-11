@@ -27,8 +27,8 @@ data class EventEntity(
     @ColumnInfo(name = "info") val info: String,
     @ColumnInfo(name = "imgUrl") val imgUrl: String,
     @ColumnInfo(name = "type") val type: String,
-    @ColumnInfo(name = "date") val date: String
-
+    @ColumnInfo(name = "date") val date: String,
+    @ColumnInfo(name = "genre") val genre: String,
 )
 
 @JsonClass(generateAdapter = true)
@@ -36,6 +36,7 @@ data class Event(
     @Json(name = "id") val id: String,
     @Json(name = "name") val name: String,
     var isFavorite: Boolean = false,
+    @Json(name = "classifications") val classifications: List<Classification>? = null,
 
     @Json(name = "type") val type: String? = null,
     @Json(name = "test") val test: Boolean? = null,
@@ -44,7 +45,6 @@ data class Event(
     @Json(name = "images") val images: List<Image>? = null,
     @Json(name = "sales") val sales: Sales? = null,
     @Json(name = "dates") val dates: Dates? = null,
-    @Json(name = "classifications") val classifications: List<Classification>? = null,
     @Json(name = "promoter") val promoter: Promoter? = null,
     @Json(name = "promoters") val promoters: List<Promoter>? = null,
     @Json(name = "info") val info: String? = null,
@@ -67,7 +67,8 @@ data class Event(
             info ?: "",
             images?.get(0)?.url ?: "",
             type ?: "",
-            dates?.start?.localDate ?: ""
+            dates?.start?.localDate ?: "",
+            classifications?.get(0)?.genre?.name ?: ""
         )
     }
 }
@@ -88,7 +89,7 @@ data class AgeRestrictions(
 data class Classification(
     @Transient val primary: Boolean? = null,
     @Transient val segment: Genre? = null,
-    @Transient val genre: Genre? = null,
+    @Json(name = "genre") val genre: Genre? = null,
     @Transient val subGenre: Genre? = null,
     @Transient val type: Genre? = null,
     @Transient val subType: Genre? = null,
@@ -98,7 +99,7 @@ data class Classification(
 @JsonClass(generateAdapter = true)
 data class Genre(
     @Transient val id: String? = null,
-    @Transient val name: String? = null
+    @Json(name = "name") val name: String? = null
 )
 
 @JsonClass(generateAdapter = true)
